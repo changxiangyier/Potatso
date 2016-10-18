@@ -3330,6 +3330,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/ShadowPath/ShadowPath/libopenssl/lib",
 					"$(PODS_ROOT)/Helpshift/helpshift-sdk-ios-v5.6.1",
+					"$(inherited)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchingapp.potatso;
@@ -3374,6 +3375,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/ShadowPath/ShadowPath/libopenssl/lib",
 					"$(PODS_ROOT)/Helpshift/helpshift-sdk-ios-v5.6.1",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchingapp.potatso;
 				PRODUCT_NAME = "$(TARGET_NAME)";

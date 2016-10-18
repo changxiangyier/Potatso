@@ -1,4 +1,4 @@
-source 'https://github.com/CocoaPods/Specs.git'
+source 'git@github.com:CocoaPods/Specs.git'
 
 platform :ios, '9.0'
 use_frameworks!
@@ -25,7 +25,7 @@ def socket
 end
 
 def model
-    pod 'RealmSwift'
+    #pod 'RealmSwift'
 end
 
 target "Potatso" do
@@ -46,7 +46,7 @@ target "Potatso" do
     pod 'CocoaLumberjack/Swift'
     pod 'Helpshift', '5.6.1'
     pod 'PSOperations', '~> 2.3'
-    pod 'LogglyLogger-CocoaLumberjack', '~> 2.0'
+    pod 'LogglyLogger-CocoaLumberjack', '~> 2.0.0'
     tunnel
     library
     fabric
@@ -65,7 +65,7 @@ end
 
 target "TodayWidget" do
     pod 'Cartography'
-    pod 'SwiftColor'
+    pod 'SwiftColor', '~> 0.3.7'
     library
     socket
     model

@@ -70,8 +70,11 @@ struct _BTime_global {
 };
 
 #ifdef __MACH__
+#ifdef CLOCK_MONOTONIC
+#undef CLOCK_MONOTONIC
+#endif
 #define CLOCK_MONOTONIC 1
-int clock_gettime(int clk_id, struct timespec* t);
+//int clock_gettime(int clk_id, struct timespec* t);
 #endif
 
 extern struct _BTime_global btime_global;

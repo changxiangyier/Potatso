@@ -25,7 +25,7 @@ def socket
 end
 
 def model
-    #pod 'RealmSwift', '~> 2.0.2'
+    pod 'RealmSwift', '~> 2.0.2'
 end
 
 target "Potatso" do

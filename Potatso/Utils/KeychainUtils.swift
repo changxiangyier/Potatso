@@ -7,6 +7,5 @@
 //
 
 import Foundation
-import KeychainAccess
 
 let keychain = Keychain(service: "com.touchingapp.potatso")

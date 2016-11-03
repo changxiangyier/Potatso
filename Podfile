@@ -13,7 +13,6 @@ def library
     pod 'KissXML/libxml_module'
     pod 'ICSMainFramework', :path => "./Library/ICSMainFramework/"
     pod 'MMWormhole', '~> 2.0.0'
-    pod 'KeychainAccess'
 end
 
 def tunnel
@@ -43,10 +42,8 @@ target "Potatso" do
     pod 'ISO8601DateFormatter', '~> 0.8'
     pod 'Alamofire'
     pod 'ObjectMapper'
-    pod 'CocoaLumberjack/Swift'
     pod 'Helpshift', '5.6.1'
     pod 'PSOperations', '~> 2.3'
-    pod 'LogglyLogger-CocoaLumberjack', '~> 2.0.0'
     tunnel
     library
     fabric

@@ -61,7 +61,7 @@ public class BaseModel: Object {
 func migrateRulesList(migration: Migration, oldSchemaVersion: UInt64) {
     migration.enumerate(RuleSet.className(), { (oldObject, newObject) in
         if oldSchemaVersion > 11 {
-            guard let deleted = oldObject!["deleted"] as? Bool where !deleted else {
+            guard let deleted = oldObject!["deleted"] as? Bool, !deleted else {
                 return
             }
         }
@@ -71,11 +71,11 @@ func migrateRulesList(migration: Migration, oldSchemaVersion: UInt64) {
         var rulesJSONArray: [[NSObject: AnyObject]] = []
         for rule in rules {
             if oldSchemaVersion > 11 {
-                guard let deleted = rule["deleted"] as? Bool where !deleted else {
+                guard let deleted = rule["deleted"] as? Bool, !deleted else {
                     return
                 }
             }
-            guard let typeRaw = rule["typeRaw"]as? String, contentJSONString = rule["content"] as? String, contentJSON = contentJSONString.jsonDictionary() else {
+            guard let typeRaw = rule["typeRaw"]as? String, let contentJSONString = rule["content"] as? String, let contentJSON = contentJSONString.jsonDictionary() else {
                 return
             }
             var ruleJSON = contentJSON

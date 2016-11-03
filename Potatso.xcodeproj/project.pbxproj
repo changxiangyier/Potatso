@@ -152,6 +152,8 @@
 		A4564DF27925368D6CA67F7D /* Pods_PacketTunnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03E5F0D3FAB0B3302CA1A4E /* Pods_PacketTunnel.framework */; };
 		A5E749DA2197E384CBCBA84B /* Pods_PacketProcessor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 310645853592796E08924EB3 /* Pods_PacketProcessor.framework */; };
 		B344F7C30FF7755C7EA32B8C /* Pods_PotatsoLibraryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A27A0B817AADB557908316E3 /* Pods_PotatsoLibraryTests.framework */; };
+		B718995A1DC9C7EA006ED84B /* ShadowPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86B08E91D17F84900613014 /* ShadowPath.framework */; };
+		B718995C1DC9C8C6006ED84B /* ShadowPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B718995B1DC9C8C6006ED84B /* ShadowPath.framework */; };
 		B803A6961D0165EA003EA9AA /* CloudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803A6951D0165EA003EA9AA /* CloudViewController.swift */; };
 		B803A6981D02B768003EA9AA /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B803A6971D02B768003EA9AA /* API.swift */; };
 		B821B0F01D51DD8F0061E7B9 /* KeychainUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B0EF1D51DD8F0061E7B9 /* KeychainUtils.swift */; };
@@ -170,7 +172,6 @@
 		B83D3E7D1D2BA8C8007655CE /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D3E7C1D2BA8C8007655CE /* Receipt.swift */; };
 		B84551401CF83D07005779CD /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B845513F1CF83D07005779CD /* HomeVC.swift */; };
 		B84551421CF878BD005779CD /* ConfigGroupChooseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84551411CF878BD005779CD /* ConfigGroupChooseVC.swift */; };
-		B86B08EC1D17F85800613014 /* ShadowPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86B08E91D17F84900613014 /* ShadowPath.framework */; };
 		B86B08ED1D17FB9B00613014 /* ShadowPath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86B08E91D17F84900613014 /* ShadowPath.framework */; };
 		B87A043A1D193ABC001132F2 /* LoggerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87A04391D193ABC001132F2 /* LoggerUtils.swift */; };
 		B87A72B41D433ACA006C2A1B /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87A72B31D433ACA006C2A1B /* NotificationHandler.swift */; };
@@ -274,6 +275,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9BDA625A1CAE2576007F2581;
 			remoteInfo = PacketProcessor;
+		};
+		B71899581DC9C7D4006ED84B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B86B08E31D17F84900613014 /* ShadowPath.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B8DEFD7A1CE9C923003FC706;
+			remoteInfo = ShadowPath;
 		};
 		B86B08E81D17F84900613014 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -853,6 +861,7 @@
 		A82D5011D8BAB2707009104B /* Pods-PacketProcessor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PacketProcessor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PacketProcessor/Pods-PacketProcessor.debug.xcconfig"; sourceTree = "<group>"; };
 		ABA819ED933DB4838AE71396 /* Pods-PacketProcessor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PacketProcessor.release.xcconfig"; path = "Pods/Target Support Files/Pods-PacketProcessor/Pods-PacketProcessor.release.xcconfig"; sourceTree = "<group>"; };
 		B03E5F0D3FAB0B3302CA1A4E /* Pods_PacketTunnel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PacketTunnel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B718995B1DC9C8C6006ED84B /* ShadowPath.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShadowPath.framework; path = "Library/ShadowPath/build/Debug-iphonesimulator/ShadowPath.framework"; sourceTree = "<group>"; };
 		B803A6951D0165EA003EA9AA /* CloudViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudViewController.swift; sourceTree = "<group>"; };
 		B803A6971D02B768003EA9AA /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		B821B0EF1D51DD8F0061E7B9 /* KeychainUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainUtils.swift; sourceTree = "<group>"; };
@@ -972,9 +981,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B86B08EC1D17F85800613014 /* ShadowPath.framework in Frameworks */,
+				B718995A1DC9C7EA006ED84B /* ShadowPath.framework in Frameworks */,
 				9BC600361CB29AFF00E5EA61 /* PotatsoBase.framework in Frameworks */,
 				9BCE27AF1CAE535800B1E561 /* PacketProcessor.framework in Frameworks */,
+				B718995C1DC9C8C6006ED84B /* ShadowPath.framework in Frameworks */,
 				9B87060D1C1DBDD400651424 /* libresolv.tbd in Frameworks */,
 				A4564DF27925368D6CA67F7D /* Pods_PacketTunnel.framework in Frameworks */,
 			);
@@ -2049,6 +2059,7 @@
 		C8B2149E8757C44C469576D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B718995B1DC9C8C6006ED84B /* ShadowPath.framework */,
 				B8D8CC0B1D508F7500CE6C0D /* CloudKit.framework */,
 				B8822CD51D2B861E00AD252C /* StoreKit.framework */,
 				B8822CD11D2B81C400AD252C /* libcrypto.a */,
@@ -2218,6 +2229,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B71899591DC9C7D4006ED84B /* PBXTargetDependency */,
 			);
 			name = PacketTunnel;
 			productName = PacketTunnel;
@@ -3131,6 +3143,11 @@
 			target = 9BDA625A1CAE2576007F2581 /* PacketProcessor */;
 			targetProxy = 9BDA62601CAE2576007F2581 /* PBXContainerItemProxy */;
 		};
+		B71899591DC9C7D4006ED84B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ShadowPath;
+			targetProxy = B71899581DC9C7D4006ED84B /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -3443,7 +3460,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchingapp.potatso.TodayWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Debug;
 		};
@@ -3466,7 +3483,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchingapp.potatso.TodayWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 			};
 			name = Release;
 		};
@@ -3483,6 +3500,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/PacketTunnel",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/ShadowPath/build/Debug-iphonesimulator",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -3524,6 +3542,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/PacketTunnel",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)/ShadowPath/build/Debug-iphonesimulator",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -3642,7 +3661,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -3669,7 +3688,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchingapp.PotatsoBase;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -3679,7 +3698,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6779B40186E2772C79CE2A52 /* Pods-PotatsoModel.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -3703,7 +3722,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -3713,7 +3732,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 13357BD365CD7C295F1BA3C0 /* Pods-PotatsoModel.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -3735,7 +3754,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.touchingapp.PotatsoModel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0.1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

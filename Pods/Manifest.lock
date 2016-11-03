@@ -85,6 +85,11 @@ PODS:
     - PSOperations/Core
   - PSOperations/Passbook (2.3.0):
     - PSOperations/Core
+  - Realm (2.0.2):
+    - Realm/Headers (= 2.0.2)
+  - Realm/Headers (2.0.2)
+  - RealmSwift (2.0.2):
+    - Realm (= 2.0.2)
   - Reveal-iOS-SDK (1.6.2)
   - SwiftColor (0.3.8)
 
@@ -113,6 +118,7 @@ DEPENDENCIES:
   - MMWormhole (~> 2.0.0)
   - ObjectMapper
   - PSOperations (~> 2.3)
+  - RealmSwift (~> 2.0.2)
   - Reveal-iOS-SDK (~> 1.6.2)
   - SwiftColor (~> 0.3.7)
 
@@ -147,9 +153,11 @@ SPEC CHECKSUMS:
   MMWormhole: 0cd3fd35a9118b2e2d762b499f54eeaace0be791
   ObjectMapper: e5e0f8aef8590fc2ddcde7f27eddb255863ee6e9
   PSOperations: 81a4d50a4efe96f6d090dc0e7eb45d9fef79ff45
+  Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
+  RealmSwift: 1f4d1d64230cf53f2ec3aa294505ea79f94a1947
   Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
   SwiftColor: 491ce84c6f6eb09bf5b0a00630f5db927306dca5
 
-PODFILE CHECKSUM: 5bc1c97edccc0682c83e0300503e298867f0379a
+PODFILE CHECKSUM: 917e5222e97ca2536f0d5f55da56df1af826719c
 
 COCOAPODS: 1.0.1

@@ -59,6 +59,7 @@ int sock_port (int fd) {
     return manager;
 }
 
+// shadowPath
 - (void)startSocksProxy:(SocksProxyCompletion)completion {
     self.socksCompletion = [completion copy];
     NSString *confContent = [NSString stringWithContentsOfURL:[Potatso sharedSocksConfUrl] encoding:NSUTF8StringEncoding error:nil];
@@ -92,9 +93,11 @@ int sock_port (int fd) {
     [NSThread detachNewThreadSelector:@selector(_startShadowsocks) toTarget:self withObject:nil];
 }
 
+// set server host and password here
 - (void)_startShadowsocks {
     NSString *confContent = [NSString stringWithContentsOfURL:[Potatso sharedProxyConfUrl] encoding:NSUTF8StringEncoding error:nil];
     NSDictionary *json = [confContent jsonDictionary];
+    
     NSString *host = json[@"host"];
     NSNumber *port = json[@"port"];
     NSString *password = json[@"password"];
@@ -103,6 +106,7 @@ int sock_port (int fd) {
     NSString *obfs = json[@"obfs"];
     NSString *obfs_param = json[@"obfs_param"];
     BOOL ota = [json[@"ota"] boolValue];
+    
     if (host && port && password && authscheme) {
         profile_t profile;
         memset(&profile, 0, sizeof(profile_t));
@@ -111,7 +115,7 @@ int sock_port (int fd) {
         profile.password = strdup([password UTF8String]);
         profile.method = strdup([authscheme UTF8String]);
         profile.local_addr = "127.0.0.1";
-        profile.local_port = 0;
+        profile.local_port = 0; // default port
         profile.timeout = 600;
         profile.auth = ota;
         if (protocol.length > 0) {
@@ -158,6 +162,8 @@ int sock_port (int fd) {
 
 - (void)_startHttpProxy: (NSURL *)confURL {
     struct forward_spec *proxy = NULL;
+    
+    // http 中转给 shadowsocks lib 处理
     if (self.shadowsocksProxyPort > 0) {
         proxy = (malloc(sizeof(struct forward_spec)));
         memset(proxy, 0, sizeof(struct forward_spec));

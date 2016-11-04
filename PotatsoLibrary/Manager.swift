@@ -166,7 +166,7 @@ public class Manager {
     }
 
     private func getDefaultConfigGroup() -> ConfigurationGroup {
-        if let groupUUID = Potatso.sharedUserDefaults().stringForKey(kDefaultGroupIdentifier), group = DBUtils.get(groupUUID, type: ConfigurationGroup.self) where !group.deleted {
+        if let groupUUID = Potatso.sharedUserDefaults().stringForKey(kDefaultGroupIdentifier), group = DBUtils.get(groupUUID, type: ConfigurationGroup.self), !group.deleted {
             return group
         }else {
             var group: ConfigurationGroup
@@ -230,6 +230,7 @@ extension Manager {
         return upstreamProxy != nil && defaultConfigGroup.defaultToProxy
     }
     
+    // general.xxx
     func generateGeneralConfig() throws {
         let confURL = Potatso.sharedGeneralConfUrl()
         let json: NSDictionary = ["dns": defaultConfigGroup.dns ?? ""]
@@ -287,6 +288,7 @@ extension Manager {
         try content.writeToURL(confURL, atomically: true, encoding: NSUTF8StringEncoding)
     }
     
+    // http.xxx
     func generateHttpProxyConfig() throws {
         let rootUrl = Potatso.sharedUrl()
         let confDirUrl = rootUrl.URLByAppendingPathComponent("httpconf")
@@ -300,6 +302,7 @@ extension Manager {
                 _ = try? NSFileManager.defaultManager().createDirectoryAtPath(p, withIntermediateDirectories: true, attributes: nil)
             }
         }
+        
         var mainConf: [String: AnyObject] = [:]
         if let path = NSBundle.mainBundle().pathForResource("proxy", ofType: "plist"), defaultConf = NSDictionary(contentsOfFile: path) as? [String: AnyObject] {
             mainConf = defaultConf

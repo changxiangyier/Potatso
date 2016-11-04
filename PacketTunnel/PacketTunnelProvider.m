@@ -45,8 +45,11 @@
         return;
     }
     self.pendingStartCompletion = completionHandler;
+    
     [self startProxies];
+    
     [self startPacketForwarders];
+    
     [self setupWormhole];
 }
 
@@ -113,6 +116,7 @@
 }
 
 - (void)startProxies {
+    // !!!: don't change the order
     [self startShadowsocks];
     [self startHttpProxy];
     [self startSocksProxy];
@@ -161,18 +165,20 @@
     }];
 }
 
+// 直接连接本地 proxy
 - (void)startPacketForwarders {
     __weak typeof(self) weakSelf = self;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onTun2SocksFinished) name:kTun2SocksStoppedNotification object:nil];
     [self startVPNWithOptions:nil completionHandler:^(NSError *error) {
         if (error == nil) {
             [weakSelf addObserver:weakSelf forKeyPath:@"defaultPath" options:NSKeyValueObservingOptionInitial context:nil];
+            // socksProxyPort 来自 antinat server
             [TunnelInterface startTun2Socks:[ProxyManager sharedManager].socksProxyPort];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                // read data from packageFlow
                 [TunnelInterface processPackets];
             });
-        }
-        if (weakSelf.pendingStartCompletion) {
+        } else if (nil != weakSelf.pendingStartCompletion) {
             weakSelf.pendingStartCompletion(error);
             weakSelf.pendingStartCompletion = nil;
         }
@@ -180,19 +186,12 @@
 }
 
 - (void)startVPNWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSError *error))completionHandler {
-    NSString *generalConfContent = [NSString stringWithContentsOfURL:[Potatso sharedGeneralConfUrl] encoding:NSUTF8StringEncoding error:nil];
-    NSDictionary *generalConf = [generalConfContent jsonDictionary];
-    NSString *dns = generalConf[@"dns"];
+    
+    // tunnel address allocated by local proxy
     NEIPv4Settings *ipv4Settings = [[NEIPv4Settings alloc] initWithAddresses:@[@"192.0.2.1"] subnetMasks:@[@"255.255.255.0"]];
-    NSArray *dnsServers;
-    if (dns.length) {
-        dnsServers = [dns componentsSeparatedByString:@","];
-        NSLog(@"custom dns servers: %@", dnsServers);
-    }else {
-        dnsServers = [DNSConfig getSystemDnsServers];
-        NSLog(@"system dns servers: %@", dnsServers);
-    }
     ipv4Settings.includedRoutes = @[[NEIPv4Route defaultRoute]];
+    
+    // local proxy server address
     NEPacketTunnelNetworkSettings *settings = [[NEPacketTunnelNetworkSettings alloc] initWithTunnelRemoteAddress:@"192.0.2.2"];
     settings.IPv4Settings = ipv4Settings;
     settings.MTU = @(TunnelMTU);
@@ -206,9 +205,24 @@
     proxySettings.HTTPSServer = [[NEProxyServer alloc] initWithAddress:proxyServerName port:proxyServerPort];
     proxySettings.excludeSimpleHostnames = YES;
     settings.proxySettings = proxySettings;
+    
+    
+    NSString *generalConfContent = [NSString stringWithContentsOfURL:[Potatso sharedGeneralConfUrl] encoding:NSUTF8StringEncoding error:nil];
+    // e.g.: 8.8.8.8,8.8.4.4
+    NSString *dns = [generalConfContent jsonDictionary][@"dns"];
+    
+    NSArray *dnsServers;
+    if (dns.length) {
+        dnsServers = [dns componentsSeparatedByString:@","];
+        NSLog(@"custom dns servers: %@", dnsServers);
+    }else {
+        dnsServers = [DNSConfig getSystemDnsServers];
+        NSLog(@"system dns servers: %@", dnsServers);
+    }
     NEDNSSettings *dnsSettings = [[NEDNSSettings alloc] initWithServers:dnsServers];
     dnsSettings.matchDomains = @[@""];
     settings.DNSSettings = dnsSettings;
+    
     [self setTunnelNetworkSettings:settings completionHandler:^(NSError * _Nullable error) {
         if (error) {
             if (completionHandler) {

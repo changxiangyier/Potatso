@@ -50,7 +50,7 @@
     if (packetFlow == nil) {
         return [NSError errorWithDomain:kTunnelInterfaceErrorDomain code:1 userInfo:@{NSLocalizedDescriptionKey: @"PacketTunnelFlow can't be nil."}];
     }
-    [TunnelInterface sharedInterface].tunnelPacketFlow = packetFlow;
+    [self sharedInterface].tunnelPacketFlow = packetFlow;
     
     NSError *error;
     GCDAsyncUdpSocket *udpSocket = [TunnelInterface sharedInterface].udpSocket;
@@ -80,12 +80,14 @@
     stop_tun2socks();
 }
 
+// data: server -> tunnel
 + (void)writePacket:(NSData *)packet {
     dispatch_async(dispatch_get_main_queue(), ^{
         [[TunnelInterface sharedInterface].tunnelPacketFlow writePackets:@[packet] withProtocols:@[@(AF_INET)]];
     });
 }
 
+// data: tunnel -> server
 + (void)processPackets {
     __weak typeof(self) weakSelf = self;
     [[TunnelInterface sharedInterface].tunnelPacketFlow readPacketsWithCompletionHandler:^(NSArray<NSData *> * _Nonnull packets, NSArray<NSNumber *> * _Nonnull protocols) {
@@ -107,6 +109,7 @@
 - (void)_startTun2Socks: (NSNumber *)socksServerPort {
     char socks_server[50];
     sprintf(socks_server, "127.0.0.1:%d", (int)([socksServerPort integerValue]));
+    
 #if TCP_DATA_LOG_ENABLE
     char *log_lvel = "debug";
 #else

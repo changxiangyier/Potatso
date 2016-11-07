@@ -115,7 +115,7 @@ int sock_port (int fd) {
         profile.password = strdup([password UTF8String]);
         profile.method = strdup([authscheme UTF8String]);
         profile.local_addr = "127.0.0.1";
-        profile.local_port = 0; // default port
+        profile.local_port = 0; // 0表示由系统分配一个端口,该端口介于1024和5000之间.
         profile.timeout = 600;
         profile.auth = ota;
         if (protocol.length > 0) {

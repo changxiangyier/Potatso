@@ -1847,7 +1847,7 @@ err_t client_sent_func (void *arg, struct tcp_pcb *tpcb, u16_t len)
     return ERR_OK;
 }
 
-void udpgw_client_handler_received (void *unused, BAddr local_addr, BAddr remote_addr, const uint8_t *data, int data_len)
+static void udpgw_client_handler_received (void *unused, BAddr local_addr, BAddr remote_addr, const uint8_t *data, int data_len)
 {
     ASSERT(options.udpgw_remote_server_addr)
     ASSERT(local_addr.type == BADDR_TYPE_IPV4 || local_addr.type == BADDR_TYPE_IPV6)

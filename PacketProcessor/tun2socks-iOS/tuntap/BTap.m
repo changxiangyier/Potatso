@@ -482,12 +482,14 @@ void BTap_Send (BTap *o, uint8_t *data, int data_len)
 #endif
     [TunnelInterface writePacket:outdata];
     return;
+   
     uint8_t msg[o->frame_mtu+2];
     msg[0] = data_len / 256;
     msg[1] = data_len % 256;
     memcpy(msg + 2, data, data_len);
 
     int bytes = write(o->fd, msg, data_len + 2);
+    
 #else
     int bytes = write(o->fd, data, data_len);
 #endif

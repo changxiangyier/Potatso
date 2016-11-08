@@ -237,6 +237,7 @@ extension Manager {
         try json.jsonString()?.writeToURL(confURL, atomically: true, encoding: NSUTF8StringEncoding)
     }
     
+    // socks.xxx
     func generateSocksConfig() throws {
         let root = NSXMLElement.elementWithName("antinatconfig") as! NSXMLElement
         let interface = NSXMLElement.elementWithName("interface", children: nil, attributes: [NSXMLNode.attributeWithName("value", stringValue: "127.0.0.1") as! DDXMLNode]) as! NSXMLElement

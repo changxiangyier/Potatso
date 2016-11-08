@@ -33,7 +33,7 @@ an_new_connection ()
 	tmp->authmask = 0xffffffff;
 	tmp->local.family = AN_INVALID_FAMILY;
 	tmp->peer.family = AN_INVALID_FAMILY;
-	an_set_proxy_url (tmp, getenv ("AN_PROXY"));
+	an_set_proxy_url (tmp, getenv ("fAN_PROXY"));
 	an_set_credentials (tmp, getenv ("AN_USER"), getenv ("AN_PASS"));
 	return tmp;
 }

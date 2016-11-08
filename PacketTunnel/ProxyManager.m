@@ -64,6 +64,7 @@ int sock_port (int fd) {
     self.socksCompletion = [completion copy];
     NSString *confContent = [NSString stringWithContentsOfURL:[Potatso sharedSocksConfUrl] encoding:NSUTF8StringEncoding error:nil];
     confContent = [confContent stringByReplacingOccurrencesOfString:@"${ssport}" withString:[NSString stringWithFormat:@"%d", [self shadowsocksProxyPort]]];
+    // local 127.0.0.1:0 , remote: socks5://127.0.0.1:${ssport}
     int fd = [[AntinatServer sharedServer] startWithConfig:confContent];
     [self onSocksProxyCallback:fd];
 }
@@ -163,7 +164,8 @@ int sock_port (int fd) {
 - (void)_startHttpProxy: (NSURL *)confURL {
     struct forward_spec *proxy = NULL;
     
-    // http 中转给 shadowsocks lib 处理
+    // http 中转给 shadowsocks lib 处理 或者 直连？
+    // ???: data 从 antinat 来？
     if (self.shadowsocksProxyPort > 0) {
         proxy = (malloc(sizeof(struct forward_spec)));
         memset(proxy, 0, sizeof(struct forward_spec));
@@ -171,6 +173,8 @@ int sock_port (int fd) {
         proxy->gateway_host = "127.0.0.1";
         proxy->gateway_port = self.shadowsocksProxyPort;
     }
+    
+    // local: 127.0.0.1:8118
     shadowpath_main(strdup([[confURL path] UTF8String]), proxy, http_proxy_handler, (__bridge void *)self);
 }
 

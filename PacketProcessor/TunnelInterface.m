@@ -108,7 +108,7 @@
 
 - (void)_startTun2Socks: (NSNumber *)socksServerPort {
     char socks_server[50];
-    // privoxy + antinat server
+    // antinat server address
     sprintf(socks_server, "127.0.0.1:%d", (int)([socksServerPort integerValue]));
     
 #if TCP_DATA_LOG_ENABLE

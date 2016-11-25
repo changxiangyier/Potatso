@@ -187,11 +187,11 @@
 
 - (void)startVPNWithOptions:(NSDictionary *)options completionHandler:(void (^)(NSError *error))completionHandler {
     
-    // tunnel address allocated by local proxy
+    // tunnel address allocated by proxy，实际就是在配置 tunnel 虚拟网卡的地址，在这里是手工指定， tun2socks 的 local proxy 必须跟此同网段
     NEIPv4Settings *ipv4Settings = [[NEIPv4Settings alloc] initWithAddresses:@[@"192.0.2.1"] subnetMasks:@[@"255.255.255.0"]];
     ipv4Settings.includedRoutes = @[[NEIPv4Route defaultRoute]];
     
-    // local proxy server address
+    // 直接默认已连上 local proxy，之后 local proxy server address 可以随便乱填？不用跟子网同网段
     NEPacketTunnelNetworkSettings *settings = [[NEPacketTunnelNetworkSettings alloc] initWithTunnelRemoteAddress:@"192.0.2.2"];
     settings.IPv4Settings = ipv4Settings;
     settings.MTU = @(TunnelMTU);
